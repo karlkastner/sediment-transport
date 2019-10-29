@@ -1,5 +1,6 @@
 % Mon  5 Aug 14:09:13 CEST 2019
 %% bed load transport rate according to meyer-peter-mueller
+% function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W)
 function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W)
 	D = 1e-3*d_mm;
 	if (nargin()<4)

@@ -12,14 +12,16 @@ classdef Rouse_Profile < handle
 		z_ref  = 1;
 		nlfit = false;
 		nwin   = 0;
+		fun;
 	end % properties
 	methods (Static)
-		[ro, obj] = rouse_number(D,us);
+		%[ro, obj]    = rouse_number(d_mm,us);
 		[D, ws, obj] = rouse_number_to_grain_diameter(ro,us);
 	end % Static methods
 	methods
 		% constructor
-		function obj = Rouse_profile()
+		function obj = Rouse_Profile()
+			obj.fun.settling_velocity = @settling_velocity;
 		end % constructor
 	end % methods
 end % Rouse_profile

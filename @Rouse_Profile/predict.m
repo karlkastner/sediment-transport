@@ -13,6 +13,10 @@ function [ssc, log_ssc, obj] = predict(obj,z,H,c,zref)
 	if (isvector(z))
 		z=cvec(z);
 	end
+	if (isscalar(H) && size(c,2) > 1)
+		H = repmat(H,1,size(c,2));
+		z = repmat(cvec(z),1,size(c,2));
+	end
 	for idx=1:length(H)
 		A   = obj.regmtx(z(:,idx),H(idx),zref);
 		log_ssc(:,idx) = A*c(:,idx);
