@@ -6,15 +6,17 @@ function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W)
 	if (nargin()<4)
 		W = 1;
 	end
-	rhow   = 1e3;
-	rhos   = 2650;
-	g      = 9.81;
-	us     = sqrt(g)./Csf.*U;
-	tau    = rhow*us.^2;
+	rhow   = Constant.density.water;
+	rhos   = Constant.density.quartz;
+	g      = Constant.gravity;
+	%us     = sqrt(g)./Csf.*U;
+	%tau    = rhow*us.^2;
 	tauc   = 0.047;
-	taus   = tau/((rhos-rhow)*g*D);
+	%taus   = tau/((rhos-rhow)*g*D)
+	taus  = shields_number(Csf,U,d_mm); %,rhos,rhow)
 	qss    = 8*max(0,taus - tauc).^(3/2);
-	qs     = qss*D*((rhos-rhow)/rhow*g*D);
+	% sqrt was missing
+	qs     = qss*D*sqrt((rhos-rhow)/rhow*g*D);
 	Qs_vol = W*qs;
 	Qs_m   = rhos*Qs_vol;
 end
