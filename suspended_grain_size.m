@@ -10,7 +10,8 @@
 %%
 %% d     : [1xnd]  grain size in arbitrary units (on linear, not on log scale)
 %% h_bed : [nsxnd] fractions of sediment of size d
-function h = suspended_grain_size_distribution(d,h_bed)
+function h = suspended_grain_size_distribution(d_mm,h_bed)
+	d_m = 1e-3*d_mm;
 	% first inverse moment
 	h = bsxfun(@times,(1./d)',h_bed);
 	% normalise

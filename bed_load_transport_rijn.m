@@ -18,24 +18,28 @@ function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b)
 	rho_s = Constant.density.quartz;
 
 	% implicit use of bsxfun
-	C   = Expanding_Double(C);
-	d50 = Expanding_Double(d50_mm);
-	d90 = Expanding_Double(d90_mm);
-	U   = Expanding_Double(U);
-	d   = Expanding_Double(d);
-	b   = Expanding_Double(b);
+%	C   = Expanding_Double(C);
+%	d50 = Expanding_Double(d50_mm);
+%	d90 = Expanding_Double(d90_mm);
+%	U   = Expanding_Double(U);
+%	d   = Expanding_Double(d);
+%	b   = Expanding_Double(b);
 
 	s     = rho_s ./ rho_w;
 
 	% 1 eq 1
 	% mm to m
-	d50   = 1e-3*d50_mm;
-	d90   = 1e-3*d90_mm;
+	d50_m   = 1e-3*d50_mm;
 
-	ds    = dimensionless_grain_size(d50);
+	ds    = dimensionless_grain_size(d50_mm);
 
 	% hydraulic radius according to vanoni-brooks
-	R     = b.*d./(b+2*d);
+	if (isempty(b))
+		R = d;
+		b = 1;
+	else
+		R = hydraulic_radius(d,b);
+	end
 	R     = max(R,0);
 
 	T = transport_stage_rijn(d50_mm,d90_mm,R,U);
@@ -43,12 +47,13 @@ function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b)
 	% 6 eq 22 transport capacity
 	% c.f. wu 3.70
 	% c.f. rijn 1984
-	Phi_b =   (T <3).*0.053.*T.^2.1.*ds.^-0.3 ...
-                + (T>=3).*0.100.*T.^1.5.*ds.^-0.3;
+	Phi_b = (  (T <3).*0.053.*T.^2.1.*ds.^-0.3 ...
+                 + (T>=3).*0.100.*T.^1.5.*ds.^-0.3 );
 	Phi_b = sign(U).*Phi_b;
 
 	% bed load transport volumetric
-	q_bv  = sqrt(g*(s-1.0)*d50.^3).*Phi_b;
+	scale = sediment_transport_scale(d50_mm);
+	q_bv  = scale*Phi_b;
 
 	% mass tranport
 	q_bm   = rho_s*q_bv;

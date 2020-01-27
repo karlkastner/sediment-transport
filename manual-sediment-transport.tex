@@ -16,7 +16,7 @@ breaklines=true
 \setlength{\cftsubsecnumwidth}{3.5em}
 
 \title{Manual for Package:
-sediment-transport\protect\\Revision 1:4M
+sediment-transport\protect\\Revision 1:5M
 }
 \author{Karl K\"astner}
 %\date{}
@@ -31,7 +31,7 @@ sediment-transport\protect\\Revision 1:4M
 % abstract
 
 
-\section{t/@Hermite\_profile}
+\section{@Hermite\_profile}
 \subsection{Hermite\_profile}
 ${}$
 \begin{lstlisting}
@@ -62,7 +62,7 @@ ${}$
  hermite profile
 
 \end{lstlisting}
-\section{t/@Nodal\_Point}
+\section{@Nodal\_Point}
 \subsection{Adot}
 ${}$
 \begin{lstlisting}
@@ -136,7 +136,7 @@ ${}$
  staility analysis for a given configuration
 
 \end{lstlisting}
-\section{t/@Parabolic\_Constant\_Profile}
+\section{@Parabolic\_Constant\_Profile}
 \subsection{Parabolic\_Constant\_Profile}
 ${}$
 \begin{lstlisting}
@@ -167,7 +167,7 @@ ${}$
  transformation of vertical coordinate
 
 \end{lstlisting}
-\section{t/@Rouse\_Profile}
+\section{@Rouse\_Profile}
 \subsection{Rouse\_Profile}
 ${}$
 \begin{lstlisting}
@@ -178,6 +178,11 @@ ${}$
 ${}$
 \begin{lstlisting}
  fit the suspended sediment concentration profile
+
+\end{lstlisting}
+\subsection{mean\_concentration}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{predict}
@@ -215,7 +220,12 @@ ${}$
  transform the vertical coordinate
 
 \end{lstlisting}
-\section{t}
+\section{sediment-transport}
+\begin{lstlisting}
+analysis and prediction of fluvial sediment transport and morphodynamics
+
+
+\end{lstlisting}
 \subsection{Exponential\_SSC\_Profile}
 ${}$
 \begin{lstlisting}
@@ -303,6 +313,11 @@ ${}$
  bedload transport direction
 
 \end{lstlisting}
+\subsection{bedload\_layer\_thickness\_mclean}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{bifurcation\_critical\_aspect\_ratio}
 ${}$
 \begin{lstlisting}
@@ -360,10 +375,20 @@ ${}$
  critical shear velocity
 
 \end{lstlisting}
+\subsection{derive\_mpm\_foramtive\_discharge}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{dimensionless\_grain\_size}
 ${}$
 \begin{lstlisting}
  dimensionless grain size
+
+\end{lstlisting}
+\subsection{dune\_celerity}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{dynamic\_shear\_stress}
@@ -378,6 +403,11 @@ ${}$
  fractional sediment transport according to engelund and hansen
 
 \end{lstlisting}
+\subsection{grain\_roughness\_mpm}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{grain\_roughness\_rijn}
 ${}$
 \begin{lstlisting}
@@ -389,10 +419,30 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{hydraulic\_radius}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{manning\_to\_chezy}
 ${}$
 \begin{lstlisting}
  manning to chezy conversion
+
+\end{lstlisting}
+\subsection{mpm2diameter}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{mpm\_solve\_for\_dm}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{reference\_concentration\_rijn}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{reference\_concentration\_smith\_lean}
@@ -418,10 +468,30 @@ ${}$
  sediment transport according to engelund and hansen
 
 \end{lstlisting}
+\subsection{sediment\_transport\_relation\_fit}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_transport\_relation\_predict}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_transport\_scale}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{sediment\_transport\_waves}
 ${}$
 \begin{lstlisting}
  sediment transport by waves
+
+\end{lstlisting}
+\subsection{sensitivity\_sediment\_transport\_to\_width}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{settling\_velocity}
@@ -514,6 +584,8 @@ ${}$
 \subsection{suspended\_transport\_mclean}
 ${}$
 \begin{lstlisting}
+ u := us/kappa*log(z/z0);
+ C := Ca*(a/z*(h-z)/(h-a)).^p;
 
 \end{lstlisting}
 \subsection{suspended\_transport\_rijn}
@@ -528,7 +600,7 @@ ${}$
  suspended sediment transport according to Wu
 
 \end{lstlisting}
-\section{t/test}
+\section{test}
 \subsection{test\_adaptation\_length\_bed}
 ${}$
 \begin{lstlisting}
@@ -544,7 +616,17 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\section{t}
+\section{sediment-transport}
+\begin{lstlisting}
+analysis and prediction of fluvial sediment transport and morphodynamics
+
+
+\end{lstlisting}
+\subsection{test\_sediment\_transport\_relation}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{total\_roughness\_engelund\_fredsoe}
 ${}$
 \begin{lstlisting}

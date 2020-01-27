@@ -1,6 +1,7 @@
 % 2017-05-10 17:20:14.017992792 +0200
 % Karl Kastner, Berlin
 %% transport stage as defined by van Rijn
+% function T = transport_stage_rijn(d50_mm,d90_mm,R,U)
 function T = transport_stage_rijn(d50_mm,d90_mm,R,U)
 	g    = Constant.g;
 	rhow = Constant.density.water;
@@ -9,10 +10,10 @@ function T = transport_stage_rijn(d50_mm,d90_mm,R,U)
 %	d50 = 1e-3*d50;
 %	d90 = 1e-3*d90;
 
-	d50_mm   = Expanding_Double(d50_mm);
-	d90_mm   = Expanding_Double(d90_mm);
-	R        = Expanding_Double(R);
-	U        = Expanding_Double(U);
+%	d50_mm   = Expanding_Double(d50_mm);
+%	d90_mm   = Expanding_Double(d90_mm);
+%	R        = Expanding_Double(R);
+%	U        = Expanding_Double(U);
 
 	% 2 critical shear velocity (Fig. 1)
 	tau_c = critical_shear_stress(d50_mm);
@@ -32,6 +33,7 @@ function T = transport_stage_rijn(d50_mm,d90_mm,R,U)
 	% c.f. wu 3.57
 	T     = (ust2./usc2) - 1;
 	% apply limit (this is not explicitely stated by  van Rijn, but necessary)
-	T     = max(0,T);
+	fdx = isfinite(T);
+	T(fdx)     = max(0,T(fdx));
 end
 

@@ -11,7 +11,7 @@ function [ssc, log_ssc, obj] = predict(obj,z,H,c,zref)
 		zref = obj.z_ref;
 	end
 	if (isvector(z))
-		z=cvec(z);
+%		z=rvec(z);
 	end
 	if (isscalar(H) && size(c,2) > 1)
 		H = repmat(H,1,size(c,2));

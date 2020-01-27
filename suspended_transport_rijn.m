@@ -4,64 +4,78 @@
 % sd : geometric standard deviation
 % function [Qs qs Phi] = suspended_transport_rijn(C,d50,d90,sd,U,d,b,dune_height)
 %
-function [Qs_m, qs_m, Phi] = suspended_transport_rijn(C,d50,d90,sd,U,d,b,dune_height)
+function [Qs_m, qs_m, Phi] = suspended_transport_rijn(C,d50_mm,d90_mm,sd,U,d,b,dune_height)
 	g     = Constant.gravity;
 	kappa = Constant.Karman;
-	rhos  = Constant.density.quartz;
-	rhow  = Constant.density.water;
-	s     = rhos/rhow;
+	rho_s  = Constant.density.quartz;
+	rho_w  = Constant.density.water;
+	s     = rho_s/rho_w;
 
 
 	% implicit use of bsxfun
-	C   = Expanding_Double(C);
-	d50 = Expanding_Double(d50);
-	d90 = Expanding_Double(d90);
-	U   = Expanding_Double(U);
-	d   = Expanding_Double(d);
-	b   = Expanding_Double(b);
+%	C   = Expanding_Double(C);
+%	d50 = Expanding_Double(d50);
+%	d90 = Expanding_Double(d90);
+%	U   = Expanding_Double(U);
+%	d   = Expanding_Double(d);
+%	b   = Expanding_Double(b);
 	
-	d50   = 1e-3*d50;
-	d90   = 1e-3*d90;
-
-	%  1. eq.   1 particle diameter
-	ds    = dimensionless_grain_size(d50);
+	d50_m   = 1e-3*d50_mm;
+	%d90   = d90;
 
 	% hydraulic radius according to Vanoni-Brooks
-	R     = (b.*d)./(b+2*d);
+	if (isempty(b))
+		R = d;
+		b = 1;
+	else
+		R = hydraulic_radius(d,b);
+	end
 	R     = max(R,0);
 
 	%  3. eq.   2 transport stage parameter
 	%  uses 2. eq.   - critical bed-shear velocity according to Shields	
-	T = transport_stage_rijn(1e3*d50,1e3*d90,R,U);
+	T = transport_stage_rijn(d50_mm,d90_mm,R,U);
 
 	%  4. eq.  37 refrence level
 	if (nargin() < 8 || isempty(dune_height))
-		dune_height = bedform_dimension_rijn(d,1e3*d50,T);
+		dune_height = bedform_dimension_rijn(d,d50_mm,T);
 	end
 	dune_height = Expanding_Double(dune_height);
 	
+	% eq 36
 	a     = 0.5*dune_height;
+	a     = max(a,0.01*d);
 
 	%  5. eq. 38 reference concentration
 	%ca    = 0.015*d50./a.*T.^1.5.*ds.^-0.3;
-	ca    = 0.015*d50./a.*ds.^-0.3.*T.^1.5;
-	ca(0 == a) = 0;
+	ca = reference_concentration_rijn(d50_mm,a,T);
+
+%function f_factor_rijn(C,d50_mm,sd,U,T,ca)
 
 	%  6. eq.  39 particle size of suspended sediment
-	d_suspended = suspended_grain_size_rijn(d50,sd,T);
+	d_sus_mm = suspended_grain_size_rijn(d50_mm,sd,T);
+
 	%  7. eq.  11,12,13 fall velocity of suspended sediment
-	ws = settling_velocity(1e3*d_suspended);
+	% TODO implement van rijn method
+	ws = settling_velocity(d_sus_mm);
+
 	%  8. eq.  - overall bed shear velocity (swapped with step 9)
 	us = sqrt(g)./C.*U;
+
 	%  9. eq.  22 beta-factor, inverse of Prandtl-Schmidt-Number
 	beta = min(2, 1 + 2*(ws./us).^2);
 	% packing density of spheres (maximum concentration)
-	c0 = Constant.packing_density.Spheres;
+	c0 = Constant.packing_density.spheres;
+
 	% 10. eq. 34 stratification correction
 	phi = 2.5*abs(ws./us).^0.8.*(ca./c0).^0.4;
+
 	% 11. eq. 3 and 33 suspension parameter, aka rouse number
-	z  = ws./(beta.*kappa.*abs(us)); 
+	z  = ws./(beta.*kappa.*abs(us));
 	zt = z + phi;
+	% same limitation as in d3d
+	zt = min(20,zt);
+
 	% 12. eq. 44 F-factor
 	F = ((a./d).^zt - (a./d).^1.2)./((1-a./d).^zt.*(1.2 - zt));
 
@@ -70,10 +84,12 @@ function [Qs_m, qs_m, Phi] = suspended_transport_rijn(C,d50,d90,sd,U,d,b,dune_he
 	qs_v = F.*U.*d.*ca;
 
 	% transport capacity / normalized transport
-	Phi = qs_v./sqrt(g*(s-1.0)*d50.^3);
+	scale = sediment_transport_scale(d50_mm);
+	% sqrt(g*(s-1.0)*d50_m.^3);
+	Phi   = qs_v./scale;
 
 	% mass tranport per unit width
-	qs_m = rhos*qs_v;
+	qs_m = rho_s*qs_v;
 
 	% total mass transport
 	Qs_m = qs_m.*b;

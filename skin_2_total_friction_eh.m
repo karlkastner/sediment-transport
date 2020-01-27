@@ -1,11 +1,19 @@
 % Thu 25 Jul 18:54:34 CEST 2019
 %% skin friction to total friction conversion according to engelund and hansen
 function [theta,C,D] = skin_2_total_friction_eh(theta_t,Ct,Dt)
-	g = 9.81;
+	if (issym(theta_t))
+		syms g positive
+	else
+		g = 9.81;
+	end
 	% skin shields stress
 	% EH 4.2.4
 	% critical shear stress
-	theta = sqrt(2.5*max(theta_t - 0.06,0));
+	if (~issym(theta_t))
+		theta = sqrt(2.5*max(theta_t - 0.06,0));
+	else
+		theta = sqrt(2.5*(theta_t - 0.06));
+	end
 
 	% EH 4.2.5
 	% for high stresses
@@ -32,7 +40,11 @@ function [theta,C,D] = skin_2_total_friction_eh(theta_t,Ct,Dt)
 	% to scin friction
 	% f = ft + a*H^2/(D*L)
 	% in the equation we furthermore must have f_total >= t', so
-	f = ft.*max(theta./theta_t,1);
+	if (~issym(ft))
+		f = ft.*max(theta./theta_t,1);
+	else
+		f = ft.*(theta./theta_t);
+	end
 
 	% transform back
 	% C = sqrt(2g/f)  => c = sqrt(2/f)
@@ -42,7 +54,11 @@ function [theta,C,D] = skin_2_total_friction_eh(theta_t,Ct,Dt)
 	if (nargin() > 2)
 		% p 55
 		% height of boundary layer
-		D = max(theta./theta_t,1).*Dt;
+		if (~issym(theta_t))
+			D = max(theta./theta_t,1).*Dt;
+		else
+			D = (theta./theta_t).*Dt;
+		end
 	end
 end
 

@@ -1,4 +1,5 @@
 % Mon 21 Oct 10:37:03 PST 2019
+%function obj = set_parameters(obj,d_mm,us)
 function obj = set_parameters(obj,d_mm,us)
 	% suspension or rouse parameter
 	ro = obj.rouse_number(d_mm,us);

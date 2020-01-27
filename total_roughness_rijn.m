@@ -1,6 +1,7 @@
 % Do 14. Mai 11:43:31 CEST 2015
 %% total roughness according to van rijn
-% function [rgh rgh_from rgh_skin] = total_roughness_rijn(h,l,d90,varargin)
+% function [rgh rgh_from rgh_skin] = total_roughness_rijn(hd,ld,d90,varargin)
+% varagin can be R 
 function [rgh rgh_form rgh_skin] = total_roughness_rijn(hd,ld,d90,varargin)
 	rgh_form = bedform_roughness_rijn(hd,ld,varargin{:});
 	rgh_skin = grain_roughness_rijn(d90,varargin{:});
@@ -11,9 +12,11 @@ function [rgh rgh_form rgh_skin] = total_roughness_rijn(hd,ld,d90,varargin)
 	if (nargin()>3)
 		g     = 9.81;
 		kappa = 0.41;
-		R = varargin{1};
-		rgh.C  = sqrt(g)/kappa*(log(R./rgh.z0) - 1);
+		R      = varargin{1};
+		%rgh.C  = sqrt(g)/kappa*(log(R./rgh.z0) - 1);
+		rgh.C = double(z02chezy(z0,R));
 		rgh.cd = g./rgh.C.^2; 
+		rgh.n  = chezy2manning(rgh.C,R);
 	end
 end
 

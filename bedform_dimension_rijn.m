@@ -20,7 +20,7 @@ function [Delta, lambda] = bedform_dimension_rijn(h,d50,T)
 	% eq 5.2.12 in "principles of sediment transport 1993"
 	% eq 15 sediment transpor iii 1984
 	% Rijn (1982
-	Delta  = 0.11*h.*(d50./h).^0.3.*(1-exp(-T/2)).*(25 - T);
+	Delta  = 0.11*h.*(d50./h).^0.3.*(1-exp(-T/2)).*max(0, 25 - T);
 	lambda = 7.3*h;
 end % bed_form_dimensions
 

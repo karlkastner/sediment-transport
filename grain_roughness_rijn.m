@@ -19,9 +19,9 @@ function rgh = grain_roughness_rijn(d90,R)
 		% sqrt(g)/kappa*log(10) ~ 18
 		% R/(e z0) = 30 R/(e ks) = 10/e R/d90 ~ 4 
 		% rgh.C  = sqrt(g)/kappa*(log(R./rgh.z0) - 1);
-		rgh.C  = double(sqrt(g)/kappa*(log(R./rgh.z0) - 1));
+		rgh.C = double(z02chezy(z0,R));
 		rgh.cd = g*rgh.C.^(-2);
-		rgh.n  = chezy_to_manning(rgh.C,R);
+		rgh.n  = chezy2manning(rgh.C,R);
 	end
 end
 

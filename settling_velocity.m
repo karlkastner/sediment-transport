@@ -3,11 +3,11 @@
 %% 5.23d in julien-2010
 % d given in mm
 % function ws = settling_velocity(d)
-function ws = settling_velocity(d)
+function ws = settling_velocity(d_mm)
 	nu = Constant.viscosity.kinematic.water;
+	ds = dimensionless_grain_size(d_mm);
 	% mm to m
-	d = d*1e-3;
-	ds = dimensionless_grain_size(d);
-	ws = 8*nu./d.*(sqrt(1 + 0.0139*ds.^3) - 1);
+	d_m = 1e-3*d_mm;
+	ws = 8*nu./d_m.*(sqrt(1 + 0.0139*ds.^3) - 1);
 end
 

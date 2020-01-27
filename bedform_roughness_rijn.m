@@ -14,8 +14,10 @@ function [rgh] = bedform_roughness_rijn(hd,ld,R)
 		else
 			syms g kappa 
 		end
-		rgh.C = sqrt(g)/kappa*(log(R./rgh.z0) - 1);
+		%rgh.C = sqrt(g)/kappa*(log(R./rgh.z0) - 1);
+		rgh.C = double(z02chezy(z0,R));
 		rgh.cd = g*rgh.C.^(-2);
+		rgh.n  = chezy2manning(rgh.C,R);
 	end
 end
 
