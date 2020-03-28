@@ -11,7 +11,7 @@
 %% d : depth
 %% b : width
 %% 
-function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b)
+function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b,T_C)
 	% fetch constants
 	g     = Constant.gravity;
 	rho_w = Constant.density.water;
@@ -31,7 +31,7 @@ function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b)
 	% mm to m
 	d50_m   = 1e-3*d50_mm;
 
-	ds    = dimensionless_grain_size(d50_mm);
+	ds    = dimensionless_grain_size(d50_mm,T_C);
 
 	% hydraulic radius according to vanoni-brooks
 	if (isempty(b))
@@ -42,7 +42,7 @@ function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b)
 	end
 	R     = max(R,0);
 
-	T = transport_stage_rijn(d50_mm,d90_mm,R,U);
+	T = transport_stage_rijn(d50_mm,d90_mm,R,U,T_C);
 
 	% 6 eq 22 transport capacity
 	% c.f. wu 3.70
@@ -53,7 +53,7 @@ function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b)
 
 	% bed load transport volumetric
 	scale = sediment_transport_scale(d50_mm);
-	q_bv  = scale*Phi_b;
+	q_bv  = scale.*Phi_b;
 
 	% mass tranport
 	q_bm   = rho_s*q_bv;

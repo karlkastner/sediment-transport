@@ -52,23 +52,24 @@ function [Qs_m, qs_m, Phi] = total_transport_engelund_hansen(C,d_mm,U,H,W,rho_s,
 	%U = Qw./(W.*H);
 
 	% relative density of the sediment
-	s = rho_s./rho_w;
+	%s = rho_s./rho_w;
 	%gammaw = g*rhow;
 
 	% friction factor (3.1.4)
 	f = 2*g./C.^2;
 
 	% shear velocity squared (3.1.2)
-	us2 = g./C.^2.*U.^2;
+	%us2 = g./C.^2.*U.^2;
 	%us2 = btimes(g./C.^2,U.^2);
 
 	% bed shear stress
 	% 3.6.2
-	tau = rho_w*us2;
+	%tau = rho_w*us2;
 
 	% dimensionless shear stress (shields number)
 	% (3.2.3,4.2.7)
-	theta = tau./(g*(rho_s-rho_w).*d_m);
+	theta = shields_number(C,U,d_mm,rho_s,rho_w);
+	%theta = tau./(g*(rho_s-rho_w).*d_m);
 	%theta = btimes(tau,1./(g*(rhos-rhow).*d_m));
 	%theta = tau./(g*rho_w*(s-1)*d_m);
 	%theta = tau./(gammaw*(s-1)*d_m);
@@ -77,6 +78,7 @@ function [Qs_m, qs_m, Phi] = total_transport_engelund_hansen(C,d_mm,U,H,W,rho_s,
 	% 4.3.5
 	if (~issym(U))
 		Phi = 0.1*sign(U).*1./f.*theta.^(5/2);
+		Phi(H<=0) = 0;
 	else
 		Phi = 0.1*1./f.*theta.^(5/2);
 	end

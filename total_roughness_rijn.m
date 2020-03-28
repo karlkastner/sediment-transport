@@ -10,11 +10,9 @@ function [rgh rgh_form rgh_skin] = total_roughness_rijn(hd,ld,d90,varargin)
 	rgh.z0 = rgh.ks/30;
 
 	if (nargin()>3)
-		g     = 9.81;
-		kappa = 0.41;
+		g     = Constant.gravity;
 		R      = varargin{1};
-		%rgh.C  = sqrt(g)/kappa*(log(R./rgh.z0) - 1);
-		rgh.C = double(z02chezy(z0,R));
+		rgh.C = double(z02chezy(rgh.z0,R));
 		rgh.cd = g./rgh.C.^2; 
 		rgh.n  = chezy2manning(rgh.C,R);
 	end

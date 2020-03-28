@@ -18,7 +18,11 @@ function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W,d90_mm,H,tauc)
 	%us     = sqrt(g)./Csf.*U;
 	%tau    = rho_w*us.^2;
 	if (nargin()<7)
-		tauc   = 0.047;
+		tau_c   = 0.047;
+	end
+	if (isempty(Csf))
+		rgh = grain_roughness_rijn(1.5*d_mm,H);
+		Csf = rgh.C;
 	end
 
 	%taus   = tau/((rho_s-rho_w)*g*D)
@@ -44,9 +48,9 @@ function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W,d90_mm,H,tauc)
 	end
 
 	if (~issym(taus))
-		qss    = 8*max(0, mu.*taus - tauc).^(3/2);
+		qss    = 8*max(0, mu.*taus - tau_c).^(3/2);
 	else
-		qss    = 8*(mu.*taus - tauc).^(3/2);
+		qss    = 8*(mu.*taus - tau_c).^(3/2);
 	end
 
 

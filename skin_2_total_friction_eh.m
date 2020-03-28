@@ -1,10 +1,11 @@
 % Thu 25 Jul 18:54:34 CEST 2019
 %% skin friction to total friction conversion according to engelund and hansen
-function [theta,C,D] = skin_2_total_friction_eh(theta_t,Ct,Dt)
+%% function [theta,C] = skin_2_total_friction_eh(theta_t,Ct)
+function [theta,C] = skin_2_total_friction_eh(theta_t,Ct)
 	if (issym(theta_t))
 		syms g positive
 	else
-		g = 9.81;
+		g = Constant.gravity;
 	end
 	% skin shields stress
 	% EH 4.2.4
@@ -35,9 +36,10 @@ function [theta,C,D] = skin_2_total_friction_eh(theta_t,Ct,Dt)
 
 	% transform c to f (p.45)
 	% f = 2/c.^2;
-	ft = 2*g./Ct.^2;
+	ft = chezy2f(Ct);
 
-	% to scin friction
+	% to skin friction (4.1.15)
+	% page 43 top f = f' theta'/theta
 	% f = ft + a*H^2/(D*L)
 	% in the equation we furthermore must have f_total >= t', so
 	if (~issym(ft))
@@ -48,17 +50,7 @@ function [theta,C,D] = skin_2_total_friction_eh(theta_t,Ct,Dt)
 
 	% transform back
 	% C = sqrt(2g/f)  => c = sqrt(2/f)
-	C=sqrt(2*g./f);
-	end
-
-	if (nargin() > 2)
-		% p 55
-		% height of boundary layer
-		if (~issym(theta_t))
-			D = max(theta./theta_t,1).*Dt;
-		else
-			D = (theta./theta_t).*Dt;
-		end
+	C = f2chezy(f);
 	end
 end
 

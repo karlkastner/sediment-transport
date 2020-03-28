@@ -16,7 +16,7 @@ breaklines=true
 \setlength{\cftsubsecnumwidth}{3.5em}
 
 \title{Manual for Package:
-sediment-transport\protect\\Revision 1:5M
+sediment-transport\protect\\Revision 1:6M
 }
 \author{Karl K\"astner}
 %\date{}
@@ -31,6 +31,52 @@ sediment-transport\protect\\Revision 1:5M
 % abstract
 
 
+\section{@GrainSizeDistribution}
+\subsection{GrainSizeDistribution}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{assign\_channel}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{bimodality}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{export\_csv}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{export\_shp}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{group\_channels}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{group\_curvature}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{group\_histograms}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{load\_coordinates}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \section{@Hermite\_profile}
 \subsection{Hermite\_profile}
 ${}$
@@ -307,6 +353,11 @@ ${}$
  form drag according to van Rijn
 
 \end{lstlisting}
+\subsection{bedform\_roughness\_rijn\_2007}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{bedload\_direction}
 ${}$
 \begin{lstlisting}
@@ -414,6 +465,11 @@ ${}$
  grain roughness (skin friction) according to van Rijn
 
 \end{lstlisting}
+\subsection{grain\_roughness\_wu}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{hiding\_exposure\_wu}
 ${}$
 \begin{lstlisting}
@@ -428,6 +484,11 @@ ${}$
 ${}$
 \begin{lstlisting}
  manning to chezy conversion
+
+\end{lstlisting}
+\subsection{mobility\_parameter\_rijn}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{mpm2diameter}
@@ -449,6 +510,16 @@ ${}$
 ${}$
 \begin{lstlisting}
  reference concentration according to smith and mclean
+
+\end{lstlisting}
+\subsection{reference\_height\_rijn}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{reference\_to\_flux\_averaged\_concentration\_rijn}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{saltation\_layer\_thickness}
@@ -489,33 +560,13 @@ ${}$
  sediment transport by waves
 
 \end{lstlisting}
-\subsection{sensitivity\_sediment\_transport\_to\_width}
-${}$
-\begin{lstlisting}
-
-\end{lstlisting}
 \subsection{settling\_velocity}
 ${}$
 \begin{lstlisting}
  Settling velocity
  5.23d in julien-2010
-
-\end{lstlisting}
-\subsection{settling\_velocity\_cheng}
-${}$
-\begin{lstlisting}
- settling velocity according to cheng
-
-\end{lstlisting}
-\subsection{settling\_velocity\_gravel}
-${}$
-\begin{lstlisting}
  settling velocity in water
-
-\end{lstlisting}
-\subsection{settling\_velocity\_stokes}
-${}$
-\begin{lstlisting}
+ settling velocity according to cheng
  stokes settling velocity
  d : [mm] diameter of sediment particle
  ws : [m/s] settling velocity
@@ -541,6 +592,7 @@ ${}$
 ${}$
 \begin{lstlisting}
  skin friction to total friction conversion according to engelund and hansen
+ function [theta,C] = skin_2_total_friction_eh(theta_t,Ct)
 
 \end{lstlisting}
 \subsection{suspended\_grain\_size}
@@ -584,8 +636,9 @@ ${}$
 \subsection{suspended\_transport\_mclean}
 ${}$
 \begin{lstlisting}
+ vertical profile of the suspended sediment according to McLean
  u := us/kappa*log(z/z0);
- C := Ca*(a/z*(h-z)/(h-a)).^p;
+ I = 1/(int_a^h c dz int_a^h u dz) int_a^h c u dz
 
 \end{lstlisting}
 \subsection{suspended\_transport\_rijn}
@@ -597,7 +650,12 @@ ${}$
 \subsection{suspended\_transport\_wu}
 ${}$
 \begin{lstlisting}
- suspended sediment transport according to Wu
+ suspended sediment transport according to widthu
+
+\end{lstlisting}
+\subsection{suspension\_parameter\_rijn}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \section{test}
@@ -639,6 +697,11 @@ ${}$
  total roughness according to van rijn
 
 \end{lstlisting}
+\subsection{total\_transport\_ackers\_white}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{total\_transport\_bagnold}
 ${}$
 \begin{lstlisting}
@@ -662,6 +725,17 @@ ${}$
 ${}$
 \begin{lstlisting}
  total sediment transport according to van rijn
+
+\end{lstlisting}
+\subsection{total\_transport\_wu}
+${}$
+\begin{lstlisting}
+ total sediment transport according to wu 2000b
+
+\end{lstlisting}
+\subsection{total\_transport\_yang}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{transport\_stage\_mclean}

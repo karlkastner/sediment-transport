@@ -1,0 +1,27 @@
+Problem:
+- The dune length and height depends on the selected filter length.
+  In particular large dunes that are overlapped with small dunes will be split.
+  This will also affect standard errors, as splittin increases the number of dunes.
+	-> standard error should better be calculated from length
+- The error is not normally distributed. Often the standard error is about the
+  same magnitude as the dune length, but there are no dunes of negative length
+  or height.
+- Fourier transform does not allow to nicely locate the peak.
+- wavelet transform and than track maximum power
+
+
+- combination of dunes:
+	- if the amplitude of the combined dune is larger
+	- constant mean: problem on hill slope
+	- constant slope: problem on hill top
+	- if the amplitude of the combined dune
+
+- use second derivative (and compare)
+
+- rule for merging
+	min_in_between < 1/4(max_right + max_left)	problem at hill peak
+	(d1*d2)/(l1*l2) > (d/l)
+
+- alternative splitting rule:
+	recursively use otsu's method
+
