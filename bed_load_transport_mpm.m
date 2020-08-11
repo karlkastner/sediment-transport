@@ -3,9 +3,9 @@
 % TODO hiding and exposure correction for gravel
 % TODO hydraulic radius correction
 % function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W)
-function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W,d90_mm,H,tauc)
+function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W,d90_mm,H,tau_c)
 	d_m = 1e-3*d_mm;
-	if (nargin()<4)
+	if (nargin()<4||isempty(W))
 		W = 1;
 	end
 	if (~issym(U))
@@ -25,8 +25,8 @@ function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W,d90_mm,H,tauc)
 		Csf = rgh.C;
 	end
 
-	%taus   = tau/((rho_s-rho_w)*g*D)
-	taus  = shields_number(Csf,U,d_mm); %,rho_s,rho_w)
+	%tau_s   = tau/((rho_s-rho_w)*g*D)
+	tau_s  = shields_number(Csf,U,d_mm); %,rho_s,rho_w)
 
 	% ripple factor
 	% d3d docu writes here min, but it should be max
@@ -42,15 +42,15 @@ function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W,d90_mm,H,tauc)
 		% as in d3d and CFD by Bates
 		%Cg = manning2chezy(n_g,H)
 		%mu = (Csf/Cg)^1.5
-		mu  = (n_g/n)^1.5;
+		mu  = (n_g./n).^1.5;
 	else
 		mu = 1;
 	end
 
-	if (~issym(taus))
-		qss    = 8*max(0, mu.*taus - tau_c).^(3/2);
+	if (~issym(tau_s))
+		qss    = 8*max(0, mu.*tau_s - tau_c).^(3/2);
 	else
-		qss    = 8*(mu.*taus - tau_c).^(3/2);
+		qss    = 8*(mu.*tau_s - tau_c).^(3/2);
 	end
 
 

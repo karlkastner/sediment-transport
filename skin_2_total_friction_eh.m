@@ -1,20 +1,18 @@
 % Thu 25 Jul 18:54:34 CEST 2019
 %% skin friction to total friction conversion according to engelund and hansen
 %% function [theta,C] = skin_2_total_friction_eh(theta_t,Ct)
-function [theta,C] = skin_2_total_friction_eh(theta_t,Ct)
-	if (issym(theta_t))
+% theta_s = theta_t in eh
+function [theta,C] = skin_2_total_friction_eh(theta_s,Ct)
+	if (issym(theta_s))
 		syms g positive
 	else
 		g = Constant.gravity;
 	end
+
 	% skin shields stress
-	% EH 4.2.4
-	% critical shear stress
-	if (~issym(theta_t))
-		theta = sqrt(2.5*max(theta_t - 0.06,0));
-	else
-		theta = sqrt(2.5*(theta_t - 0.06));
-	end
+	%theta_s = theta_t.*total2skin_stress_ratio(theta_t,[],[],'engelund-hansen');
+	theta = theta_s.*skin2total_stress_ratio(theta_s,[],[],[],[],[],[],'engelund-hansen-1967',true)
+
 
 	% EH 4.2.5
 	% for high stresses
@@ -43,9 +41,9 @@ function [theta,C] = skin_2_total_friction_eh(theta_t,Ct)
 	% f = ft + a*H^2/(D*L)
 	% in the equation we furthermore must have f_total >= t', so
 	if (~issym(ft))
-		f = ft.*max(theta./theta_t,1);
+		f = ft.*max(theta./theta_s,1);
 	else
-		f = ft.*(theta./theta_t);
+		f = ft.*(theta./theta_s);
 	end
 
 	% transform back

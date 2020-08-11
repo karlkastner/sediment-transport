@@ -3,7 +3,7 @@
 % per unit width
 function scale = sediment_transport_scale(d_mm)
 	if (~issym(d_mm))
-		g    = Constant.gravity;
+		g     = Constant.gravity;
 		rho_s = Constant.density.quartz;
 		rho_w = Constant.density.water;
 	else

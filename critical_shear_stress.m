@@ -2,9 +2,13 @@
 %% critical shear Stress
 %function tau_c = critical_shear_stress(d50_mm,varargin)
 function tau_c = critical_shear_stress(d50_mm,T_C,varargin)
+	if (issym(d50_mm))
+	syms rho_w rho_s g
+	else
 	rho_w = Constant.density.water;
 	rho_s = Constant.density.quartz;
 	g     = Constant.gravity;
+	end
 
 	% critical shields parameter
 	theta_c = critical_shear_stress_ratio(d50_mm,T_C,varargin{:});

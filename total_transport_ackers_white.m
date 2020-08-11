@@ -29,5 +29,7 @@ function Qs = total_transport_aw(C,d_mm,U,H,W,T_C)
 	Ggr = lambda.*max(0,Fgr./Ac - 1).^m;
 	Ct  = rho_w*Ggr.*d_m.*(rho_s./rho_w)./H.*(U./us).^n;
 	Qs  = Ct.*U.*H.*W;
+
+	Qs(H<=0) = 0;
 end
 

@@ -12,6 +12,9 @@ function [c, s2c, clog, obj] = fit(obj,ssc,z,H,mask,ensmask)
 	if (nargin() < 5)
 		mask = [];
 	end
+	if (nargin()<6)
+		ensmask = 1:size(ssc,2);
+	end
 	if (islogical(ensmask))
 		ensmask = find(ensmask);
 	end

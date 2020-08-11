@@ -60,5 +60,6 @@ function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b,T_C
 
 	% bed load through cross section
 	Q_bm   = b.*q_bm;
+	Q_bm(d<=0) = 0;
 end % function bed_load_transport
 

@@ -4,27 +4,33 @@
 % form drag influence on sediment concentration profile?
 % Ts mclean = Ts_vanrijn + 1
 % TODO, take care of sign of u!
-function [Qs,C,u_z,z] = suspended_sediment_transport_mclean(chezy,u,h,width,d50_mm,d84_mm,d_mm,p)
+% TODO use we by dietrich
+% TODO use tau_c by wieberg 
+function [Qs, Cs, z, u_z, us_f, us_T, z0_f, z0_T, scale] = suspended_transport_mclean( ...
+				chezy,u,h,width,d50_mm,d84_mm,T_C,varargin)
+	rho_s = 2650;
+	%order  = 6;
 	order  = 6;
-	kappa = 0.41;
+	kappa = Constant.Karman;
+	if (nargin()<8)
+		d_mm = d50_mm;
+	end
 
-	us = shear_velocity(u,chezy);
 
 	% baricentric coordinates and weights for numerical integration
-	[w_int, b] = int_1d_gauss(order);
-	n = 100;
-	b = (1:n)'/(n+1);
-	b = [b,1-b];
-	w_int = (1/n)*ones(n,1);
+	if (0)
+		[w_int, b] = int_1d_gauss(order);
+	else
+		n = 10;
+		b = (1:n)'/(n+1);
+		b = [b,1-b];
+		w_int = (1/n)*ones(n,1);
+	end
 
 	a = zeros(size(h));	
 	% vertical coordinate for numerical integration
 	z = (b(:,1)*rvec(a) + b(:,2)*rvec(h));
 
-	% logarithmic velocity profile : eq 5
-	%% u := us/kappa*log(z/z0);
-	z0 = chezy2z0(chezy,h);
-	u_z = (rvec(us)/kappa).*log(z./rvec(z0));
 
 	% detph-averaged velocity
 	%ubar = log_profile_ubar(us,H,z0);
@@ -32,18 +38,29 @@ function [Qs,C,u_z,z] = suspended_sediment_transport_mclean(chezy,u,h,width,d50_
 	ubar = u;
 
 	% sediment concentration profile
-	[C, Ca] = vertical_ssc_profile_mclean(chezy,u,h,z,d50_mm,d84_mm,d_mm,p);
+	[Cs, Ca, a, u_z, us_f, us_T, z0_f, z0_T, scale] = vertical_ssc_profile_mclean(chezy,u,h,z,w_int,d50_mm,d84_mm,T_C,varargin{:});
 	%[C,Ca] = sediment_concentration_profile_mclean();
+%	if (isempty(chezy))
+%		chezy = z02chezy(z0,h);
+%	end
+
+	%us = shear_velocity(u,chezy);
+
+	% logarithmic velocity profile : eq 5
+	%% u := us/kappa*log(z/z0);
+	%z0  = chezy2z0(chezy,h)
+	%u_z = (rvec(us)/kappa).*log(z./rvec(z0));
 
 	% einstein integral over depth
 	%% I = 1/(int_a^h c dz int_a^h u dz) int_a^h c u dz
 	% I = 1/h*int_a^h u/ubar Cs/Ca dz
 	%I = 1./((c*w).*(u*w)).*((c.*u)*w);
-	I = (rvec(h)./(rvec(ubar).*rvec(Ca))).*((C.*u_z).'*w_int).';
+	I = (rvec(h)./(rvec(ubar).*rvec(Ca))).*((Cs.*u_z).'*w_int).';
 
 	% eq 1
 	% specific transport per unit width
-	qs     = Ca.*ubar.*h.*I;
+	% mass
+	qs     = rho_s*Ca.*ubar.*h.*I;
 
 	% total transport across section
 	Qs     = width*qs;

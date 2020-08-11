@@ -16,7 +16,7 @@ breaklines=true
 \setlength{\cftsubsecnumwidth}{3.5em}
 
 \title{Manual for Package:
-sediment-transport\protect\\Revision 1:6M
+sediment-transport\protect\\Revision 1:7M
 }
 \author{Karl K\"astner}
 %\date{}
@@ -143,6 +143,9 @@ ${}$
 ${}$
 \begin{lstlisting}
  discharge through branches
+ there is a problem with this relation, as soon as the bed of one channel is perturbed,
+ the water level at the bifurcation changes, so the depth of the second channel is not
+ entirely independent
 
 \end{lstlisting}
 \subsection{geometry}
@@ -277,6 +280,11 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{adaptation\_length\_armanini}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{adaptation\_length\_bed}
 ${}$
 \begin{lstlisting}
@@ -287,6 +295,11 @@ ${}$
 ${}$
 \begin{lstlisting}
  adaption length of the flow
+
+\end{lstlisting}
+\subsection{angle\_of\_repose}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{bar\_mode\_crosato}
@@ -369,6 +382,26 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{bedload\_transport\_ashida\_michue\_1972}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{bedload\_transport\_bagnold\_1941}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{bedload\_transport\_bagnold\_1973}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{bedload\_transport\_egashira}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{bifurcation\_critical\_aspect\_ratio}
 ${}$
 \begin{lstlisting}
@@ -386,12 +419,6 @@ ${}$
 ${}$
 \begin{lstlisting}
  chezy rougness according to engelund and fredsoe
-
-\end{lstlisting}
-\subsection{chezy\_to\_manning}
-${}$
-\begin{lstlisting}
- convert chezy to manning
 
 \end{lstlisting}
 \subsection{critical\_grain\_size}
@@ -414,6 +441,11 @@ ${}$
  aka shields curve
 
 \end{lstlisting}
+\subsection{critical\_shear\_stress\_wiberg}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{critical\_shear\_stress\_wu}
 ${}$
 \begin{lstlisting}
@@ -426,7 +458,27 @@ ${}$
  critical shear velocity
 
 \end{lstlisting}
+\subsection{derive\_combined\_transport}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{derive\_critical\_grain\_size}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{derive\_mpm\_foramtive\_discharge}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{derive\_suspended\_sediment\_concentration\_profile}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{derive\_suspended\_sediment\_concentration\_profiles}
 ${}$
 \begin{lstlisting}
 
@@ -442,10 +494,45 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{dune\_dimension\_allen\_1978}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{dune\_dimension\_bradley\_venditti}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{dune\_dimension\_gill}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{dune\_dimension\_julien\_klaasen\_1978}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{dune\_dimension\_yalin}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{dune\_height\_karim}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{dynamic\_shear\_stress}
 ${}$
 \begin{lstlisting}
  dynamic shear stress
+
+\end{lstlisting}
+\subsection{formative\_discharge}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{fractional\_transport\_engelund\_hansen}
@@ -455,6 +542,11 @@ ${}$
 
 \end{lstlisting}
 \subsection{grain\_roughness\_mpm}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{grain\_roughness\_nikuradse}
 ${}$
 \begin{lstlisting}
 
@@ -470,6 +562,11 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{grain\_size\_from\_shear\_stress}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{hiding\_exposure\_wu}
 ${}$
 \begin{lstlisting}
@@ -480,10 +577,14 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\subsection{manning\_to\_chezy}
+\subsection{integration\_factor\_wright\_parker}
 ${}$
 \begin{lstlisting}
- manning to chezy conversion
+
+\end{lstlisting}
+\subsection{matching\_level\_mclean}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{mobility\_parameter\_rijn}
@@ -501,18 +602,48 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\subsection{reference\_concentration\_rijn}
+\subsection{nikuradse\_roughness\_length}
 ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
-\subsection{reference\_concentration\_smith\_lean}
+\subsection{reference\_concentration\_einstein}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{reference\_concentration\_mclean}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{reference\_concentration\_mclean\_2}
 ${}$
 \begin{lstlisting}
  reference concentration according to smith and mclean
 
 \end{lstlisting}
+\subsection{reference\_concentration\_rijn}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{reference\_concentration\_wright\_parker}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{reference\_concentration\_zyserman\_fredsoe}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{reference\_height\_rijn}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{reference\_level\_mclean}
 ${}$
 \begin{lstlisting}
 
@@ -522,7 +653,27 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{roughness\_height\_mclean}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{roughness\_height\_mclean\_1972}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{saltation\_layer\_thickness}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_load\_ART\_syvitski\_2003}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{sediment\_load\_ART\_syvitski\_2003b}
 ${}$
 \begin{lstlisting}
 
@@ -531,12 +682,6 @@ ${}$
 ${}$
 \begin{lstlisting}
  directed sediment transport
-
-\end{lstlisting}
-\subsection{sediment\_transport\_engelund\_hansen\_2}
-${}$
-\begin{lstlisting}
- sediment transport according to engelund and hansen
 
 \end{lstlisting}
 \subsection{sediment\_transport\_relation\_fit}
@@ -560,13 +705,18 @@ ${}$
  sediment transport by waves
 
 \end{lstlisting}
+\subsection{settling\_time\_constant\_eddy\_viscosity}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{settling\_velocity}
 ${}$
 \begin{lstlisting}
  Settling velocity
  5.23d in julien-2010
- settling velocity in water
  settling velocity according to cheng
+ settling velocity in water
  stokes settling velocity
  d : [mm] diameter of sediment particle
  ws : [m/s] settling velocity
@@ -582,10 +732,25 @@ ${}$
  invert settling velocity to diameter
 
 \end{lstlisting}
+\subsection{shear2shields}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{shear\_velocity\_mclean}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{shields\_number}
 ${}$
 \begin{lstlisting}
  normalized shear stress, shear stress ratio
+
+\end{lstlisting}
+\subsection{skin2total\_stress\_ratio}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{skin\_2\_total\_friction\_eh}
@@ -593,6 +758,21 @@ ${}$
 \begin{lstlisting}
  skin friction to total friction conversion according to engelund and hansen
  function [theta,C] = skin_2_total_friction_eh(theta_t,Ct)
+
+\end{lstlisting}
+\subsection{stratification\_parameter\_rijn}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{stratification\_parameter\_wright\_parker}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{stratification\_profile\_mclean}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{suspended\_grain\_size}
@@ -633,6 +813,11 @@ ${}$
  grain size of the suspended sediment according to van rijn, empirical
 
 \end{lstlisting}
+\subsection{suspended\_sediment\_adaptation\_length\_claudin}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{suspended\_transport\_mclean}
 ${}$
 \begin{lstlisting}
@@ -647,24 +832,79 @@ ${}$
  suspended load transport according to van Rijn
 
 \end{lstlisting}
+\subsection{suspended\_transport\_van\_rijn\_simplified\_1984}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{suspended\_transport\_wright\_parker}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{suspended\_transport\_wu}
 ${}$
 \begin{lstlisting}
  suspended sediment transport according to widthu
 
 \end{lstlisting}
-\subsection{suspension\_parameter\_rijn}
+\subsection{suspension\_parameter}
 ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
 \section{test}
+\subsection{test\_Rouse\_profile\_fit}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{test\_adaptation\_length\_bed}
 ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{test\_bed\_load\_transport\_rijn}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_bedform\_roughness\_rijn\_2007}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_bedload\_transport\_mpm}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{test\_critical\_shear\_stress}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_sediment\_transport}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_sediment\_transport\_engelund\_hansen\_1}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_sediment\_transport\_engelund\_hansen\_2}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_sediment\_transport\_karim}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_sediment\_transport\_rijn}
 ${}$
 \begin{lstlisting}
 
@@ -685,16 +925,81 @@ ${}$
 \begin{lstlisting}
 
 \end{lstlisting}
+\subsection{test\_suspended\_transport\_mclean}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_suspended\_transport\_wright\_parker}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_total\_transport\_engelund\_hansen}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{test\_total\_transport\_yang}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{total2skin\_stress\_ratio}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{total\_2\_skin\_friction}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{total\_roughness\_engelund\_fredsoe}
 ${}$
 \begin{lstlisting}
  roughness lenght according to engelund and fredsoe
 
 \end{lstlisting}
+\subsection{total\_roughness\_engelund\_fredsoe2}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{total\_roughness\_karim}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{total\_roughness\_karim2}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{total\_roughness\_length\_mclean}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{total\_roughness\_parker}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{total\_roughness\_rijn}
 ${}$
 \begin{lstlisting}
  total roughness according to van rijn
+
+\end{lstlisting}
+\subsection{total\_roughness\_yalin}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
+\subsection{total\_to\_skin\_stress\_kishi}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{total\_transport\_ackers\_white}
@@ -719,6 +1024,17 @@ ${}$
 ${}$
 \begin{lstlisting}
  total sediment transport according to Engelund and Hansen
+
+\end{lstlisting}
+\subsection{total\_transport\_engelund\_hansen\_2}
+${}$
+\begin{lstlisting}
+ sediment transport according to engelund and hansen
+
+\end{lstlisting}
+\subsection{total\_transport\_karim}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \subsection{total\_transport\_rijn}
@@ -750,10 +1066,20 @@ ${}$
  transport stage as defined by van Rijn
 
 \end{lstlisting}
+\subsection{vertical\_ssc\_profile\_exponential}
+${}$
+\begin{lstlisting}
+
+\end{lstlisting}
 \subsection{vertical\_ssc\_profile\_mclean}
 ${}$
 \begin{lstlisting}
  vertical profile of the suspended sediment according to McLean
+
+\end{lstlisting}
+\subsection{viscosity\_correction\_sediment}
+${}$
+\begin{lstlisting}
 
 \end{lstlisting}
 \end{document}

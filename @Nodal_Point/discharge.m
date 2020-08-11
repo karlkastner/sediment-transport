@@ -1,5 +1,9 @@
 % Wed  7 Mar 18:38:57 CET 2018
 %% discharge through branches
+%% there is a problem with this relation, as soon as the bed of one channel is perturbed,
+%% the water level at the bifurcation changes, so the depth of the second channel is not
+%% entirely independent
+% syms C L W Q0 zs zb1 zb2 w1 w2; solve(C*w1*sqrt(zs/L)*(zs-zb1).^1.5 + C*w2*sqrt(zs/L)*(zs-zb2).^1.5 - Q0,zs)
 function [Q,fq] = discharge(obj, h, w, R)
 	% ratio of flow capacities
 	% TODO make roughness an optional function

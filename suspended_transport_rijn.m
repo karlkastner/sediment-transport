@@ -51,7 +51,7 @@ function [Qs_m, qs_m, Phi] = suspended_transport_rijn(C,d50_mm,d90_mm,sd,U,d,b,T
 	%  8. eq.  - overall bed shear velocity (swapped with step 9)
 	us = sqrt(g)./C.*U;
 
-	zt = suspension_parameter_rijn(ws,us,ca);
+	zt = suspension_parameter(ws,us,ca,'rijn');
 
 	% 12. eq. 44 F-factor
 	% note, series expansion for zt->0 as proposed by
@@ -72,5 +72,7 @@ function [Qs_m, qs_m, Phi] = suspended_transport_rijn(C,d50_mm,d90_mm,sd,U,d,b,T
 
 	% total mass transport
 	Qs_m = qs_m.*b;
+
+	Qs_m(d<=0) = 0;
 end % suspended_transport_rijn
 

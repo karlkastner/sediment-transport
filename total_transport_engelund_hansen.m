@@ -18,6 +18,9 @@ function [Qs_m, qs_m, Phi] = total_transport_engelund_hansen(C,d_mm,U,H,W,rho_s,
 	else
 		syms g kg m
 	end
+	if (nargin() < 4 || isempty(H))
+		H = NaN;
+	end
 
 	if (nargin() < 5 || isempty(W))
 		W = 1;
@@ -68,21 +71,16 @@ function [Qs_m, qs_m, Phi] = total_transport_engelund_hansen(C,d_mm,U,H,W,rho_s,
 
 	% dimensionless shear stress (shields number)
 	% (3.2.3,4.2.7)
-	theta = shields_number(C,U,d_mm,rho_s,rho_w);
-	%theta = tau./(g*(rho_s-rho_w).*d_m);
-	%theta = btimes(tau,1./(g*(rhos-rhow).*d_m));
-	%theta = tau./(g*rho_w*(s-1)*d_m);
-	%theta = tau./(gammaw*(s-1)*d_m);
+	theta = shields_number(C,U,d_mm);
 
 	% non dimensional total transport
 	% 4.3.5
-	if (~issym(U))
+	if (~issym(U) & ~issym(H))
 		Phi = 0.1*sign(U).*1./f.*theta.^(5/2);
 		Phi(H<=0) = 0;
 	else
 		Phi = 0.1*1./f.*theta.^(5/2);
 	end
-	%Phi = 0.1*btimes(1./f,sign(U).*theta.^(5/2));
 
 	% volumetric transport per unit with
 	% above 4.1.6, 4.3.2

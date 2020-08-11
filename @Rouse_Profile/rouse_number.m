@@ -3,10 +3,10 @@
 %% rouse number (suspension number) for given grain siye and shear velocity
 % function [ro, obj] = rouse_number(D,us)
 %
-function [ro, obj] = rouse_number(obj,d_mm,us)
+function [ro, obj] = rouse_number(obj,d_mm,us,varargin)
 	% prandtl schmidt number
 	beta = 1;
-	ws = obj.fun.settling_velocity(d_mm);
+	ws = obj.fun.settling_velocity(d_mm,varargin{:});
 	ro = ws./(Constant.Karman*beta*us);
 end
 

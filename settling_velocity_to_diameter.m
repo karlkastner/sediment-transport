@@ -1,13 +1,13 @@
 % Fri 19 May 13:37:09 CEST 2017
 %% invert settling velocity to diameter
-function d = settling_velocity_to_diameter(w,mode)
-	if (nargin()<2)
+function d = settling_velocity_to_diameter(w,T_C,mode)
+	if (nargin()<3)
 		mode = '';
 	end
-	rhow = 1000;
-	rhos = 2650;
-	g    = 9.81;
-	nu   = Constant.viscosity.kinematic.water;
+	rhow = Constant.density.water;
+	rhos = Constant.density.quartz;
+	g    = Constant.gravity;
+	nu   = Constant.viscosity_kinematic_water(T_C);
 	s    = rhos/rhow;
 	a    = 8*nu;
 	b    = 0.0139*(g*(s-1)./nu.^2);

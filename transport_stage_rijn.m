@@ -1,7 +1,7 @@
 % 2017-05-10 17:20:14.017992792 +0200
 % Karl Kastner, Berlin
 %% transport stage as defined by van Rijn
-% function T = transport_stage_rijn(d50_mm,d90_mm,R,U)
+% function T = transport_stage_rijn(d50_mm,d90_mm,R,U,T_C)
 function T    = transport_stage_rijn(d50_mm,d90_mm,R,U,T_C)
 	g     = Constant.g;
 	rho_w = Constant.density.water;

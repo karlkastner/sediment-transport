@@ -59,4 +59,7 @@ function [Qs,qs_m,Phi,C] = total_transport_yang(C,d_mm,U,H,W,T_C,flag)
 	Cest = rho_w*1e-6*exp10(log10_Cest);
 	qs   = Cest.*U.*H;
 	Qs   = W.*qs;
+	
+	Qs(H<=0) = 0;
 end %
+

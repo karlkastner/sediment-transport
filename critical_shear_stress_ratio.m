@@ -17,6 +17,8 @@ function theta = critical_shear_stress_ratio(d_mm,T_C,mode)
 	end
 
 	switch (lower(mode))
+	case {'mpm'}
+		theta = 0.047;
 	case {'wu'}
 		% 3.45
 		theta = 0.03;
