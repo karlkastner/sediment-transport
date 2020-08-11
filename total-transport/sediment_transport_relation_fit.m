@@ -1,4 +1,5 @@
 % Fri 27 Dec 15:46:22 +08 2019
+% fit a general transport relation to observations
 function [rc,p] = fit_sediment_transport_relation(Qs,Q,W,n,S,d_mm)
 	rho_s   = 2650;
 	rho_w   = 1000;
