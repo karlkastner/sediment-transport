@@ -1,6 +1,6 @@
 % 2020-04-23 12:57:27.602492251 +0800
 % formative discharge for Engelund-Hansen Transport relation
-% syms Q h; h=Q.^(2/3); u=h.^(1/2); Qs = u.^5, syms h; h = solve(Q-h^(3/2+1/6),h); h=h(1); u = h.^(1/2+1/6);Qs=u.^5
+% function Q = formative_discharge(Qmin,Qmax,mode)
 function Q = formative_discharge(Qmin,Qmax,mode)
 	if (nargin()<3)
 		mode = 'chezy';
@@ -13,5 +13,6 @@ function Q = formative_discharge(Qmin,Qmax,mode)
 	otherwise
 		error('here');
 	end
+% syms Q h; h=Q.^(2/3); u=h.^(1/2); Qs = u.^5, syms h; h = solve(Q-h^(3/2+1/6),h); h=h(1); u = h.^(1/2+1/6);Qs=u.^5
 end
 

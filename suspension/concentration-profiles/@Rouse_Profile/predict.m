@@ -4,7 +4,7 @@
 % ssc = predict(z,H,c,zref)
 %
 function [ssc, log_ssc, obj] = predict(obj,z,H,c,zref)
-	if (nargin() < 4)
+	if (nargin() < 4||isempty(c))
 		c = obj.c;
 	end
 	if (nargin() < 5)

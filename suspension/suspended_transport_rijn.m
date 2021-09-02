@@ -2,7 +2,7 @@
 % Karl Kastner, Berlin
 %% suspended load transport according to van Rijn
 % sd : geometric standard deviation
-% function [Qs qs Phi] = suspended_transport_rijn(C,d50,d90,sd,U,d,b,dune_height)
+% function [Qs qs Phi] = suspended_transport_rijn(C,d50,d90,sd,U,d,b,T_C,dune_height)
 %
 % TODO : account for effect of cohesisve sediment on critical shear stress
 % TODO : account for effect of slope on critical shear stress

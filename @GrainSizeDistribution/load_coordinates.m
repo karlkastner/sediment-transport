@@ -7,7 +7,7 @@ function obj = load_coordinates(obj, filename, centre, zone)
 	index = cellfun(@str2num,strrep(gpx.name(:),'B',''));
 
 	% extract data and sort
-	[index  sdx] = sort(index);
+	[index, sdx] = sort(index);
 	time  = gpx.time(sdx);
 	X     = cvec(gpx.utm.X(sdx));
 	Y     = cvec(gpx.utm.Y(sdx));
@@ -48,7 +48,7 @@ function obj = load_coordinates(obj, filename, centre, zone)
 	end
 	
 	% transform to XY to SN coordinates
-	[obj.S obj.N obj.nn] = centre.xy2sn(cvec(obj.X), cvec(obj.Y));
+	[obj.S, obj.N, obj.nn] = centre.xy2sn(cvec(obj.X), cvec(obj.Y));
 	
 	% interpolate width and Rc
 %	[obj.width] = centre.get(obj.S,'width');
@@ -62,9 +62,8 @@ function obj = load_coordinates(obj, filename, centre, zone)
 	% distance from Sanggau
 	obj.S_sanggau = zeros(1,length(obj.index));
 
-	% TODO, no magic coordinates
-	x0 = 455955;
-	y0 =  13134;
+	% TODO, pass as arguments
+	[x0, y0] = sanggau_coordinates();
 	yoffset = 0;
 	for idx=1:length(obj.index)
 		obj.S_sanggau(idx) = centre.distance(obj.X(idx),obj.Y(idx)-yoffset,x0,y0-yoffset);

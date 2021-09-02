@@ -3,7 +3,7 @@
 %% bed load transport
 %% method of van Rijn (1984)
 %%
-%% function [Q_b q_b Phi_b] = bed_load_transport_rijn(C,d50,d90,U,d,b)
+%  function [Q_bm, q_bm, Phi_b] = bedload_transport_rijn(C,d50_mm,d90_mm,U,d,b,T_C)
 %%
 %% d50 [mm] (converted to m)
 %% d90 [mm] (converted to m)
@@ -11,7 +11,7 @@
 %% d : depth
 %% b : width
 %% 
-function [Q_bm, q_bm, Phi_b] = bed_load_transport_rijn(C,d50_mm,d90_mm,U,d,b,T_C)
+function [Q_bm, q_bm, Phi_b] = bedload_transport_rijn(C,d50_mm,d90_mm,U,d,b,T_C)
 	% fetch constants
 	g     = Constant.gravity;
 	rho_w = Constant.density.water;

@@ -29,8 +29,11 @@ function [ks_m,n,C] = grain_roughness_nikuradse(d_mm,R,method)
 		C    = manning2chezy(n,R);
 	case {'default'}
 		% log-law, d = d50
-		d_m = 1e-3*d_mm;
+		d_m   = 1e-3*d_mm;
 		ks_m  = 2.5*d_m;
+		z0    = ks2z0(ks_m);
+		C     = z02chezy(z0,R);
+		n     = chezy2manning(C,R);
 	end % switch
 end % end
 
