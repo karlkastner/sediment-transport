@@ -75,11 +75,11 @@ function ws   = settling_velocity(d_mm,T_C,mode)
 end
 
 function ws = settling_velocity_dietrich_1982(d_mm,T_C)
-	nu = Constant.viscosity_kinematic_water(T_C);
-	Ds = dimensionless_grain_size(d_mm,T_C).^3;
-	rho_s = 2650;
-	rho_w = 1e3;
-	g = 9.81;
+	nu    = Constant.viscosity_kinematic_water(T_C);
+	Ds    = dimensionless_grain_size(d_mm,T_C).^3;
+	rho_s = Constant.density.quartz; % 2650;
+	rho_w = Constant.density.water; % 1e3
+	g     = Constant.gravity; % 9.81;
 
 	% p 1623 "typical coarse sand"
 	P   = 3.5;
@@ -100,6 +100,6 @@ function ws = settling_velocity_dietrich_1982(d_mm,T_C)
 	R3 = (0.65-(CSF/2.83*tanh(log10(Ds)-4.6))).^(1+(3.5-P)/2.5);
 	W_star = R3.*10.^(R1 + R2);
 
-	ws = cbrt(W_star.*(((rho_s - rho_w)./rho_w).*g.*nu));
-end
+	ws     = cbrt(W_star.*(((rho_s - rho_w)./rho_w).*g.*nu));
+end % settling_velocity_dietrich
 

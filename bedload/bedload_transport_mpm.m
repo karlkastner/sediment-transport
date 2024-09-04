@@ -58,6 +58,7 @@ function [Qs_m,qss] = bed_load_transport_mpm(U,Csf,d_mm,W,d90_mm,H,tau_c)
 	%qs     = d_m.*sqrt((rho_s/rho_w-1).*g.*d_m.^3).*qss;
 	qs     = scale.*qss;
 	Qs_vol = W.*qs;
+packing density !!!!
 	Qs_m   = rho_s*Qs_vol;
 end
 
